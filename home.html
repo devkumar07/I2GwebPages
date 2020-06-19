@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <title>Innovate to Grow- Home</title>
+    <style>
+        .container{
+          text-align: center;
+        }
+        .container1{
+          margin-top: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .container2{
+          margin-top: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .container3{
+          margin-top: 30px;
+        }
+        .container4{
+          margin-top: 60px;
+        }
+        td.details-control {
+          background: url('../resources/details_open.png') no-repeat center center;
+          cursor: pointer;
+        }
+        tr.shown td.details-control {
+            background: url('../resources/details_close.png') no-repeat center center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+      function format(d) {
+        // `d` is the original data object for the row
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+          '<tr>' +
+          '<td>Short Summary:</td>' +
+          '<td>' + d.gsx$shortsummaryfinaltext.$t + '</td>' +
+          '</tr>' +
+          '</table>';
+      }
+      $(document).ready(function() {
+        var table = $('#example').DataTable({
+          "bServerSide": false,
+          "bProcessing": true,
+          "sAjaxDataProp": "feed.entry",
+          "sAjaxSource": "https://spreadsheets.google.com/feeds/list/1b_4EDyDdz10RkZccWe7e-eVzZsPWYCchRgflhPN1Q3g/1/public/values?alt=json",
+        "aoColumns": [{
+              "className": 'details-control',
+              "orderable": false,
+              "mDataProp": "gsx$buttons.$t",
+              "defaultContent": ''
+            },
+            {
+              "mDataProp": "gsx$year-semester-pro.$t"
+            },
+            {
+              "mDataProp": "gsx$categoryindustry.$t"
+            },
+            {
+              "mDataProp": "gsx$projecttitle.$t"
+            },
+            {
+              "mDataProp": "gsx$organizationname.$t"
+            }
+          ],
+          "order": [
+            [1, 'desc']
+          ],
+          fixedHeader: {
+            header: true,
+            footer: true
+          }
+        });
+        $('#example tbody').on('click', 'td.details-control', function() {
+          var tr = $(this).closest('tr');
+          var row = table.row(tr);
+          if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+          } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Message from the Dean</h1>
+    <div class = "container">
+      <iframe align="middle" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="598px" scrolling="no" src="https://www.youtube.com/embed/dVUeVZyP1dE" width="1200px"></iframe>
+    </div>
+    <p style="text-align: center;">Welcome and participation instructions, Mark Matsumoto, Dean, School of Engineering, University of California, Merced.</p>
+    <div class = "container1">
+      <br><button type="button" class="btn btn-primary btn-lg" id = "Attendees">Attendees</button><br>
+      <script type = "text/javascript">
+        document.getElementById("Attendees").onclick = function(){
+          window.location.href = "https://innovatetogrow.ucmerced.edu/attendees"
+        }
+      </script>
+    </div>
+    <div class="container2">
+      <br><button type="button" class="btn btn-primary btn-lg" id = "Judges">Judges</button><br>
+      <script type = "text/javascript">
+        document.getElementById("Judges").onclick = function(){
+          window.location.href = "https://innovatetogrow.ucmerced.edu/production-judges"
+        }
+      </script>
+    </div>
+    <div class="container2">
+      <br><button type="button" class="btn btn-primary btn-lg" id = "Partners">Partners</button><br>
+    </div>
+    <div class = "container2">
+      <br><button type="button" class="btn btn-primary btn-lg" id = "Register">Register</button><br>
+    </div>
+    <p class = "container3"><b>For problems during the event: call 209-228-4411</b> or email <a href="mailto:innovatetogrow@ucmerced.com">innovatetogrow@ucmerced.com</a></p>
+    <h1 style="margin-top: 50px;">Past Projects</h1>
+    <div class = "container4">
+      <table id="example" class="display" style="width:100%">
+        <thead>
+          <tr>
+            <th>Details</th>
+            <th>Year-Semester</th>
+            <th>Category</th>
+            <th>Project Name</th>
+            <th>Organization</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Details</th>
+            <th>Year-Semester</th>
+            <th>Category</th>
+            <th>Project Name</th>
+            <th>Organization</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="container4">
+      <h1 style="margin-top: 50px;">Sponsors</h1>
+      <table align="center" border="0" cellpadding="15" cellspacing="15" style="width:900px;">
+        <tbody>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p>&nbsp;</p>
+      
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.50.54_am.png" style="width: 294px; height: 150px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/att.png" style="height: 190px; width: 190px;" /></p>
+            </td>
+            <td class="secondcol">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/oportun-logo.png" style="width: 315px; height: 140px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p>&nbsp;</p>
+      
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/veracruz-1.png" style="width: 240px; height: 120px;" /></p>
+      
+              <p>&nbsp;</p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/topcon_company_logo.png" style="height: 150px; width: 176px;" /></p>
+      
+              <p>&nbsp;</p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.42.48_am.png" style="width: 326px; height: 120px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/vchlogo.png" style="width: 200px; height: 86px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.46.07_am.png" style="width: 160px; height: 100px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/sun-harvest-logo-yellow-02-e1483725374706_0.png" style="width: 200px; height: 45px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/morningstar.png" style="width: 150px; height: 97px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p>&nbsp;</p>
+      
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-01_at_5.17.44_pm.png" style="width: 150px; height: 74px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.45.05_am.png" style="width: 210px; height: 66px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/1280px-bart-logo.svg_.png" style="width: 129px; height: 79px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/beatfit1024_1.png" style="width: 150px; height: 150px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_12.10.46_pm.png" style="width: 156px; height: 46px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/sciabica2019_400x404.png" style="width: 99px; height: 100px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.53.23_am.png" style="width: 128px; height: 100px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-12_at_1.46.22_pm.png" style="width: 128px; height: 100px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/conagra_brands_logo17.png" style="width: 128px; height: 100px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p>&nbsp;</p>
+      
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_11.56.40_am.png" style="width: 126px; height: 100px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-12_at_1.45.23_pm.png" style="width: 128px; height: 100px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/95266504_741347586694118_420475949658669056_n.png" style="height: 60px; width: 235px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p>&nbsp;</p>
+      
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-03_at_12.15.53_pm.png" style="width: 155px; height: 110px;" /></p>
+      
+              <p>&nbsp;</p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-12_at_1.18.29_pm.png" style="width: 160px; height: 80px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/ucm_library_logo.png" style="width: 158px; height: 158px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/screen_shot_2020-05-07_at_10.33.11_am.png" style="width: 150px; height: 100px;" /></p>
+            </td>
+            <td class="secondcol" style="text-align: center;">
+              <p><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/ucce_logo.png" style="width: 148px; height: 120px;" /></p>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondcol" style="text-align: center;"><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/healthy_house_logo.png" style="width: 148px; height: 110px;" /></td>
+            <td class="secondcol" style="text-align: center;"><img alt="" src="/sites/innovatetogrow.ucmerced.edu/files/page/images/mcfb.png" style="width: 204px; height: 100px;" /></td>
+            <td class="secondcol" style="text-align: center;">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
